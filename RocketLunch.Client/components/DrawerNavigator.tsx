@@ -25,6 +25,7 @@ import ListIcon from "react-native-paper/lib/typescript/components/List/ListIcon
 import dishesData from "../constants/dishesData";
 import restaurantsData from "../constants/restaurantsData";
 import { TouchableOpacity, Image, View } from "react-native";
+import useUser from "@/store/useUser";
 
 const settingsNavItems = [
   // {
@@ -127,6 +128,7 @@ const DrawerNavigator = () => {
 };
 
 const CustomDrawer = (props: any) => {
+  const { logOut } = useUser();
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItem
@@ -151,6 +153,11 @@ const CustomDrawer = (props: any) => {
       />
       <DrawerItemList {...props} />
       <Divider />
+      <DrawerItem
+        label="Wyloguj się"
+        labelStyle={{ color: "red", fontSize: 18 }}
+        onPress={() => logOut()}
+      />
     </DrawerContentScrollView>
   );
 };
