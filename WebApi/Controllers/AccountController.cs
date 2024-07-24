@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using WebApi.Models;
 
 namespace WebApi.Controllers
 {
@@ -9,10 +10,10 @@ namespace WebApi.Controllers
     [Route("api/[controller]")]
     public class AccountController : ControllerBase
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
 
-        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -21,19 +22,19 @@ namespace WebApi.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
-            var user = new IdentityUser
+            var user = new User
             {
                 UserName = model.Email,
-                PhoneNumber = model.PhoneNumber
+                Email = model.Email,
+                PhoneNumber = model.PhoneNumber,
+                FirstName = model.FirstName,
+                LastName = model.LastName
             };
-
             var result = await _userManager.CreateAsync(user, model.Password);
-
             if (result.Succeeded)
             {
-                return Ok(new { message = "User registered successfully" });
+                return Ok(new { message = "Uzytkownik zosta³ zarejestrowany" });
             }
-
             return BadRequest(result.Errors);
         }
 
@@ -41,37 +42,50 @@ namespace WebApi.Controllers
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
-
             if (result.Succeeded)
             {
-                return Ok(new { message = "Login successful" });
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                var roles = await _userManager.GetRolesAsync(user);
+                return Ok(new
+                {
+                    message = "zalogowano",
+                    userId = user.Id,
+                    email = user.Email,
+                    roles = roles
+                });
             }
-
-            return Unauthorized(new { message = "Invalid login attempt" });
+            return Unauthorized(new { message = "nieprawid³owa próba logowania" });
         }
 
         [HttpPost("logout")]
+        [Authorize]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
             return Ok(new { message = "Wylogowano pomyœlnie" });
         }
 
-        // Endpoint dostêpny tylko dla zalogowanych u¿ytkowników
         [HttpGet("secure-data")]
         [Authorize]
-        public IActionResult GetSecureData()
+        public async Task<IActionResult> GetSecureData()
         {
-            // Uzyskaj informacje o zalogowanym u¿ytkowniku
-            var userName = User.FindFirst(ClaimTypes.Name)?.Value;
-            var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound(new { message = "nie znaleziono uzytkownika" });
+            }
 
-            // Zwróæ dane o u¿ytkowniku
             return Ok(new
             {
-                Message = "To jest zabezpieczona akcja.",
-                UserName = userName,
-                UserEmail = userEmail
+                Message = "To jest testowy endpoint.",
+                UserName = user.UserName,
+                UserEmail = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                PhoneNumber = user.PhoneNumber,
+                IsOrderer = user.Orderer,
+                IsAdmin = user.Admin,
+                HasBilans = user.Bilans
             });
         }
     }
@@ -81,6 +95,8 @@ namespace WebApi.Controllers
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string Password { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 
     public class LoginModel

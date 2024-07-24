@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OzxC0JegJbQ=",
+  "dgSpecHash": "p+/v4qRQEnQ=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Krzysztof\\Desktop\\WebApi\\WebApi\\WebApi.csproj",
+  "projectFilePath": "C:\\Users\\Krzysztof\\Desktop\\WebApi\\WebApi2\\WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Krzysztof\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Krzysztof\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

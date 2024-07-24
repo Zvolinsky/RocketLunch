@@ -2,15 +2,16 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using WebApi.Data;
+using WebApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Skonfiguruj DbContext do u¿ywania SQL Server
+// konfiguruje DbContext do u¿ywania SQL Server
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Skonfiguruj Identity
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+// konfiguruje Identity
+builder.Services.AddIdentity<User, IdentityRole>(options =>
 {
     options.Password.RequireDigit = true;
     options.Password.RequiredLength = 6;
@@ -21,14 +22,14 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
 
-// Dodaj kontrolery i inne us³ugi
+// Dodaje kontrolery i inne us³ugi
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Skonfiguruj potok HTTP
+// konfiguracja potoku HTTP
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -38,8 +39,13 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-app.UseAuthentication(); // Upewnij siê, ¿e uwierzytelnianie jest w³¹czone
-app.UseAuthorization();  // Upewnij siê, ¿e autoryzacja jest w³¹czona
+
+// uwierzytelnianie
+app.UseAuthentication();
+
+// autoryzacja
+app.UseAuthorization();  
+
 
 app.MapControllers();
 app.MapFallbackToFile("/index.html");
