@@ -1,0 +1,24 @@
+{
+  "Version": 1,
+  "Hash": "ijXq7bI6yM2MNPQaEoT+YrL3gWSHC1C/uxGUdber57o=",
+  "Source": "RocketLunch.Server.Bootstrapper",
+  "BasePath": "_content/RocketLunch.Server.Bootstrapper",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "C:\\Users\\Krzysztof\\Documents\\Dev\\ReactNative\\RocketLunch\\RocketLunch.Server\\RocketLunch.Server\\RocketLunch.Server.Identity\\RocketLunch.Server.Identity.csproj",
+      "Version": 2,
+      "Source": "RocketLunch.Server.Identity",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

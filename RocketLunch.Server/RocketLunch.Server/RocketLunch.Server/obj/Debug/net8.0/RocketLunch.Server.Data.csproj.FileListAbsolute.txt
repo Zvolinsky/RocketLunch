@@ -1,0 +1,13 @@
+C:\Users\Krzysztof\Documents\Dev\ReactNative\RocketLunch\RocketLunch.Server\RocketLunch.Server\RocketLunch.Server\bin\Debug\net8.0\RocketLunch.Server.Data.deps.json
+C:\Users\Krzysztof\Documents\Dev\ReactNative\RocketLunch\RocketLunch.Server\RocketLunch.Server\RocketLunch.Server\bin\Debug\net8.0\RocketLunch.Server.Data.dll
+C:\Users\Krzysztof\Documents\Dev\ReactNative\RocketLunch\RocketLunch.Server\RocketLunch.Server\RocketLunch.Server\bin\Debug\net8.0\RocketLunch.Server.Data.pdb
+C:\Users\Krzysztof\Documents\Dev\ReactNative\RocketLunch\RocketLunch.Server\RocketLunch.Server\RocketLunch.Server\obj\Debug\net8.0\RocketLunch.Server.Data.csproj.AssemblyReference.cache
+C:\Users\Krzysztof\Documents\Dev\ReactNative\RocketLunch\RocketLunch.Server\RocketLunch.Server\RocketLunch.Server\obj\Debug\net8.0\RocketLunch.Server.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Krzysztof\Documents\Dev\ReactNative\RocketLunch\RocketLunch.Server\RocketLunch.Server\RocketLunch.Server\obj\Debug\net8.0\RocketLunch.Server.Data.AssemblyInfoInputs.cache
+C:\Users\Krzysztof\Documents\Dev\ReactNative\RocketLunch\RocketLunch.Server\RocketLunch.Server\RocketLunch.Server\obj\Debug\net8.0\RocketLunch.Server.Data.AssemblyInfo.cs
+C:\Users\Krzysztof\Documents\Dev\ReactNative\RocketLunch\RocketLunch.Server\RocketLunch.Server\RocketLunch.Server\obj\Debug\net8.0\RocketLunch.Server.Data.csproj.CoreCompileInputs.cache
+C:\Users\Krzysztof\Documents\Dev\ReactNative\RocketLunch\RocketLunch.Server\RocketLunch.Server\RocketLunch.Server\obj\Debug\net8.0\RocketLunch.Server.Data.sourcelink.json
+C:\Users\Krzysztof\Documents\Dev\ReactNative\RocketLunch\RocketLunch.Server\RocketLunch.Server\RocketLunch.Server\obj\Debug\net8.0\RocketLunch.Server.Data.dll
+C:\Users\Krzysztof\Documents\Dev\ReactNative\RocketLunch\RocketLunch.Server\RocketLunch.Server\RocketLunch.Server\obj\Debug\net8.0\refint\RocketLunch.Server.Data.dll
+C:\Users\Krzysztof\Documents\Dev\ReactNative\RocketLunch\RocketLunch.Server\RocketLunch.Server\RocketLunch.Server\obj\Debug\net8.0\RocketLunch.Server.Data.pdb
+C:\Users\Krzysztof\Documents\Dev\ReactNative\RocketLunch\RocketLunch.Server\RocketLunch.Server\RocketLunch.Server\obj\Debug\net8.0\ref\RocketLunch.Server.Data.dll

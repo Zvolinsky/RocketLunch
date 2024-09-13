@@ -2,13 +2,17 @@ import { View, ScrollView, Image } from "react-native";
 import { Text } from "react-native-paper";
 import React from "react";
 import Menu from "@/components/Menu";
+import Sheet from "@/components/Sheet";
 
 const CatererPage = ({ route, navigation }) => {
   const { params: data } = route;
-  console.log(data);
+  function navigateToDish(name) {
+    navigation.navigate(name);
+  }
   return (
     <>
-      <ScrollView>
+      <Sheet />
+      <ScrollView style={{ zIndex: -1 }}>
         <View>
           <Image
             source={data.image}
@@ -23,7 +27,7 @@ const CatererPage = ({ route, navigation }) => {
             <Text variant="titleSmall">{data.description}</Text>
           </View>
           <View style={{ padding: 20 }}>
-            <Menu />
+            <Menu restaurantName={data.name} navigateToDish={navigateToDish} />
           </View>
         </View>
       </ScrollView>

@@ -19,6 +19,7 @@ export default function Index() {
     <NavigationContainer independent>
       <PaperProvider theme={theme}>
         {logged ? <DrawerNavigator /> : <RegistrationLogin />}
+        {/* <DrawerNavigator /> */}
       </PaperProvider>
     </NavigationContainer>
   );

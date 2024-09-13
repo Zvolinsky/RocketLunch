@@ -5,6 +5,9 @@ import { useState } from "react";
 // import Sorted from "./MenuComponents/Sorted";
 // import DishTypeSection from "./MenuComponents/DishTypeSection";
 import { dishTypes } from "../constants/dishesData";
+import ButtonsGroup from "./MenuComponents/ButtonsGroup";
+import DishTypeSection from "./MenuComponents/DishTypeSection";
+import Sorted from "./MenuComponents/Sorted";
 
 const Menu = ({ restaurantName, navigateToDish }) => {
   const dishTypesArray = [];
@@ -18,7 +21,7 @@ const Menu = ({ restaurantName, navigateToDish }) => {
   }
   return (
     <View>
-      {/* <Text>Menu</Text>
+      <Text variant="titleLarge">Menu</Text>
       <ButtonsGroup changeFilter={changeFilter} />
       <View style={{ minHeight: 390 }}>
         {filter == 0 && (
@@ -47,7 +50,7 @@ const Menu = ({ restaurantName, navigateToDish }) => {
             )}
           </View>
         ))}
-      </View> */}
+      </View>
     </View>
   );
 };

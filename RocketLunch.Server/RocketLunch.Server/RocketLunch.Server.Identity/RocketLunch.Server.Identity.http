@@ -1,0 +1,6 @@
+@RocketLunch.Server.Identity_HostAddress = http://localhost:5094
+
+GET {{RocketLunch.Server.Identity_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

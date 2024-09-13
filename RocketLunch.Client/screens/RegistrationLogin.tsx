@@ -40,6 +40,8 @@ const Registration = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
   const [visible, setVisible] = useState(false);
 
@@ -47,19 +49,56 @@ const Registration = () => {
   const SUCCESS = "Zarejestrowano pomyślnie!";
   const FAIL = "Coś poszło nie tak. :/";
 
+  const content = [
+    {
+      title: "Imię",
+      value: firstName,
+      method: setFirstName,
+    },
+    {
+      title: "Nazwisko",
+      value: lastName,
+      method: setLastName,
+    },
+    {
+      title: "Adres e-mail",
+      value: email,
+      method: setEmail,
+    },
+    {
+      title: "Hasło",
+      value: password,
+      method: setPassword,
+    },
+    {
+      title: "Potwierdź hasło",
+      value: confirmPassword,
+      method: setConfirmPassword,
+    },
+    {
+      title: "Nr telefonu",
+      value: phoneNumber,
+      method: setPhoneNumber,
+    },
+  ];
+
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
 
   async function register(
     email: string,
     phoneNumber: string,
-    password: string
+    password: string,
+    firstName: string,
+    lastName: string
   ) {
     await axios
       .post(`${ROOT + ACCOUNT}register`, {
         email: email,
         phoneNumber: phoneNumber,
         password: password,
+        firstName: firstName,
+        lastName: lastName,
       })
       .then(function (response) {
         console.log(response);
@@ -87,37 +126,74 @@ const Registration = () => {
       >
         <Button
           style={{
-            width: "50%",
+            width: "70%",
             zIndex: 1,
+            padding: 5,
           }}
-          textColor="white"
           mode="contained"
-          onPress={() => register(email, phoneNumber, password)}
+          onPress={() =>
+            register(
+              email.trim(),
+              phoneNumber.trim(),
+              password.trim(),
+              firstName.trim(),
+              lastName.trim()
+            )
+          }
         >
-          Zarejestruj się
+          <Text style={{ fontSize: 20, color: "white", fontWeight: "600" }}>
+            Zarejestruj się
+          </Text>
         </Button>
       </View>
       <ScrollView>
+        <View style={{ gap: 20, marginTop: 20 }}>
+          {/* <TextInput
+          label="Imię"
+          value={firstName.trim()}
+          onChangeText={(text) => setFirstName(text)}
+        />
+        <TextInput
+          label="Nazwisko"
+          value={lastName.trim()}
+          onChangeText={(text) => setLastName(text)}
+        />
         <TextInput
           label="Adres e-mail"
-          value={email}
+          value={email.trim()}
           onChangeText={(text) => setEmail(text)}
         />
         <TextInput
           label="Hasło"
-          value={password}
+          value={password.trim()}
           onChangeText={(text) => setPassword(text)}
         />
         <TextInput
           label="Potwierdź hasło"
-          value={confirmPassword}
+          value={confirmPassword.trim()}
           onChangeText={(text) => setConfirmPassword(text)}
         />
         <TextInput
           label="Nr telefonu"
-          value={phoneNumber}
+          value={phoneNumber.trim()}
           onChangeText={(text) => setPhoneNumber(text)}
-        />
+        /> */}
+          {content.map((item, index) => (
+            <View key={index} style={{ gap: 7 }}>
+              <Text variant="titleSmall">{item.title}:</Text>
+              <TextInput
+                mode="outlined"
+                outlineColor="#AAA"
+                dense
+                value={item.value}
+                onChangeText={(value) => item.method(value)}
+                contentStyle={{ paddingHorizontal: 8 }}
+                style={{ height: 40 }}
+              />
+            </View>
+          ))}
+        </View>
+        <View style={{ height: 200 }} />
       </ScrollView>
     </View>
   );
@@ -146,7 +222,7 @@ const ModalWindow = ({ message, visible, hideModal }: any) => {
 };
 
 const Login = () => {
-  const { logIn } = useUser();
+  const { logIn, fetchUser } = useUser();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -165,8 +241,9 @@ const Login = () => {
         password: password,
       })
       .then(function (response) {
-        console.log(response);
+        console.log(response.data);
         logIn();
+        fetchUser(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -188,28 +265,47 @@ const Login = () => {
       >
         <Button
           style={{
-            width: "50%",
+            width: "70%",
             zIndex: 1,
             backgroundColor: "blue",
+            padding: 5,
           }}
-          textColor="white"
           mode="contained"
-          onPress={() => login(email, password)}
+          onPress={() => login(email.trim(), password.trim())}
         >
-          Zaloguj się
+          <Text style={{ fontSize: 20, color: "white", fontWeight: "600" }}>
+            Zaloguj się
+          </Text>
         </Button>
       </View>
       <ScrollView>
-        <TextInput
-          label="Adres e-mail"
-          value={email}
-          onChangeText={(text) => setEmail(text)}
-        />
-        <TextInput
-          label="Hasło"
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-        />
+        <View style={{ gap: 20, marginTop: 20 }}>
+          <View style={{ gap: 7 }}>
+            <Text variant="titleSmall">Adres e-mail:</Text>
+
+            <TextInput
+              mode="outlined"
+              outlineColor="#AAA"
+              dense
+              contentStyle={{ paddingHorizontal: 8 }}
+              style={{ height: 40 }}
+              value={email}
+              onChangeText={(text) => setEmail(text)}
+            />
+          </View>
+          <View style={{ gap: 7 }}>
+            <Text variant="titleSmall">Hasło:</Text>
+            <TextInput
+              mode="outlined"
+              outlineColor="#AAA"
+              dense
+              contentStyle={{ paddingHorizontal: 8 }}
+              style={{ height: 40 }}
+              value={password}
+              onChangeText={(text) => setPassword(text)}
+            />
+          </View>
+        </View>
       </ScrollView>
     </View>
   );

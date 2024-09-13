@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\RocketLunch.Server.Kurwa.props" />
+</Project>

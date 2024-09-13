@@ -1,0 +1,6 @@
+@RocketLunch.Server.Bootstrapper_HostAddress = http://localhost:5187
+
+GET {{RocketLunch.Server.Bootstrapper_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

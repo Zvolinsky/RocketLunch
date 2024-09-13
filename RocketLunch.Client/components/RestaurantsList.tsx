@@ -6,7 +6,7 @@ import RestaurantCard from "./RestaurantCard";
 
 const RestaurantsList = () => {
   return (
-    <View>
+    <View style={{ gap: 20 }}>
       <View
         style={{
           flexDirection: "row",
@@ -14,13 +14,13 @@ const RestaurantsList = () => {
           justifyContent: "space-between",
         }}
       >
-        <Text variant="titleMedium">Zamów to, co znajomi</Text>
-        <Text variant="titleSmall">Więcej...</Text>
+        <Text variant="titleLarge">Lista cateringów</Text>
       </View>
       <FlatList
         showsHorizontalScrollIndicator={false}
         data={restaurantsData}
         renderItem={({ item }) => <RestaurantCard content={item} />}
+        ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
       />
     </View>
   );

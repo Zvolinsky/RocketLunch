@@ -7,9 +7,10 @@ import {
 
 //screens
 import Home from "@/screens/DrawerScreens/Home";
+import AdminPage from "@/screens/DrawerScreens/AdminPage";
 import CatererPage from "@/screens/DrawerScreens/CatererPage";
 import DishOfTheDayPage from "@/screens/DrawerScreens/DishOfTheDayPage";
-import OrdererPage from "@/screens/DrawerScreens/OrdererPanelPage";
+import OrdererPanelPage from "@/screens/DrawerScreens/OrdererPanelPage";
 import MyOrdersPage from "@/screens/DrawerScreens/MyOrdersPage";
 import MyAccountPage from "@/screens/DrawerScreens/MyAccount";
 import MyBalancePage from "@/screens/DrawerScreens/MyBalancePage";
@@ -33,11 +34,11 @@ const settingsNavItems = [
   //   label: "Panel admina",
   //   href: AdminPage,
   // },
-  {
-    name: "Orderer Page",
-    label: "Panel zamawiającego",
-    href: OrdererPage,
-  },
+  // {
+  //   name: "Orderer Page",
+  //   label: "Panel zamawiającego",
+  //   href: OrdererPage,
+  // },
   {
     name: "MyAccount Page",
     label: "Moje konto",
@@ -50,6 +51,7 @@ const settingsNavItems = [
 
 const Drawer = createDrawerNavigator();
 const DrawerNavigator = () => {
+  const { UserData } = useUser();
   return (
     <Drawer.Navigator
       backBehavior="history"
@@ -83,6 +85,7 @@ const DrawerNavigator = () => {
           drawerItemStyle: { display: "none" },
         })}
       />
+
       <Drawer.Screen
         name="Dania dnia"
         component={DishOfTheDayPage}
@@ -102,6 +105,46 @@ const DrawerNavigator = () => {
           drawerItemStyle: { display: "none" },
         })}
       />
+      {UserData.admin && (
+        <Drawer.Screen
+          name="Panel admina"
+          component={AdminPage}
+          options={({ navigation }) => ({
+            headerLeft: () => (
+              <TouchableOpacity onPress={() => navigation.goBack()}>
+                <Image
+                  source={require("../assets/img/Drawer/back-arrow.png")}
+                  style={{
+                    marginLeft: 10,
+                    width: 25,
+                    resizeMode: "contain",
+                  }}
+                />
+              </TouchableOpacity>
+            ),
+          })}
+        />
+      )}
+      {UserData.orderer && (
+        <Drawer.Screen
+          name="Panel zamawiającego"
+          component={OrdererPanelPage}
+          options={({ navigation }) => ({
+            headerLeft: () => (
+              <TouchableOpacity onPress={() => navigation.goBack()}>
+                <Image
+                  source={require("../assets/img/Drawer/back-arrow.png")}
+                  style={{
+                    marginLeft: 10,
+                    width: 25,
+                    resizeMode: "contain",
+                  }}
+                />
+              </TouchableOpacity>
+            ),
+          })}
+        />
+      )}
       {settingsNavItems.map((item, index) => (
         <Drawer.Screen
           key={index}
